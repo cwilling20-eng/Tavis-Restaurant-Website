@@ -93,48 +93,81 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div
-        className={`md:hidden fixed inset-0 z-[60] transition-all duration-500 shadow-lg ${
-          mobileOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-        style={{ backgroundColor: '#3B2F2F' }}
-      >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
+      {mobileOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: '#3B2F2F',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '2rem',
+          }}
+        >
           <img
             src="/Tavis_Logo.jpg"
             alt="Tavi's Italian Restaurant"
-            className="h-20 w-auto object-contain mb-4"
+            style={{ height: '5rem', width: 'auto', objectFit: 'contain' }}
           />
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className="font-display text-2xl tracking-wide transition-colors duration-300 hover:text-gold-400"
-              style={{ color: location.pathname === link.to ? '#D4B86A' : '#F5F0E8' }}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '1.5rem',
+                color: location.pathname === link.to ? '#D4B86A' : '#F5F0E8',
+                textDecoration: 'none',
+                letterSpacing: '0.05em',
+              }}
             >
               {link.label}
             </Link>
           ))}
           <a
             href="tel:9034320330"
-            className="mt-4 inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-400 px-8 py-3 rounded-sm font-body tracking-wider uppercase transition-all duration-300"
-            style={{ color: '#F5F0E8' }}
+            onClick={() => setMobileOpen(false)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: '#8B3A2F',
+              color: '#F5F0E8',
+              padding: '0.75rem 2rem',
+              borderRadius: '4px',
+              fontFamily: "'Lato', sans-serif",
+              fontSize: '0.875rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              marginTop: '0.5rem',
+            }}
           >
             <Phone size={16} />
             (903) 432-0330
           </a>
           <button
             onClick={() => setMobileOpen(false)}
-            className="absolute top-6 right-6 hover:text-gold-400 transition-colors"
-            style={{ color: '#EDE5D8' }}
+            style={{
+              position: 'absolute',
+              top: '1.5rem',
+              right: '1.5rem',
+              color: '#EDE5D8',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '0.5rem',
+            }}
             aria-label="Close menu"
           >
             <X size={28} />
           </button>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
