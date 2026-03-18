@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-espresso-700/80 via-espresso-600/70 to-espresso-700/90" />
       <div className="absolute inset-0 bg-gradient-to-r from-espresso-700/30 to-transparent" />
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 pt-24 md:pt-32 max-w-4xl mx-auto">
         <div className="mb-8 flex justify-center">
           <img
             src="/Tavis_Logo.jpg"
