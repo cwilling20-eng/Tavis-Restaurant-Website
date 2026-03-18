@@ -34,71 +34,78 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-espresso-700/95 backdrop-blur-md shadow-lg py-2'
-          : 'bg-espresso-700/60 backdrop-blur-sm py-4'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img
-              src="/Tavis_Logo.jpg"
-              alt="Tavi's Italian Restaurant"
-              className="h-12 max-h-14 w-auto object-contain"
-            />
-            <span className="font-display text-cream-100 text-lg hidden sm:block tracking-wide">
-              Tavi's
-            </span>
-          </Link>
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-espresso-700/95 backdrop-blur-md shadow-lg py-2'
+            : 'bg-espresso-700/60 backdrop-blur-sm py-4'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-3 shrink-0">
+              <img
+                src="/Tavis_Logo.jpg"
+                alt="Tavi's Italian Restaurant"
+                className="h-12 max-h-14 w-auto object-contain"
+              />
+              <span className="font-display text-cream-100 text-lg hidden sm:block tracking-wide">
+                Tavi's
+              </span>
+            </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`relative font-body text-sm tracking-widest uppercase transition-colors duration-300 pb-1 ${
-                  location.pathname === link.to
-                    ? 'text-gold-400'
-                    : 'text-cream-200 hover:text-gold-400'
-                }`}
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`relative font-body text-sm tracking-widest uppercase transition-colors duration-300 pb-1 ${
+                    location.pathname === link.to
+                      ? 'text-gold-400'
+                      : 'text-cream-200 hover:text-gold-400'
+                  }`}
+                >
+                  {link.label}
+                  {location.pathname === link.to && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-400 rounded-full" />
+                  )}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href="tel:9034320330"
+                className="hidden sm:inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-400 text-cream-100 px-5 py-2.5 rounded-sm font-body text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-lg hover:shadow-terracotta-700/30"
               >
-                {link.label}
-                {location.pathname === link.to && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-400 rounded-full" />
-                )}
-              </Link>
-            ))}
-          </div>
+                <Phone size={15} />
+                Call Now
+              </a>
 
-          <div className="flex items-center gap-4">
-            <a
-              href="tel:9034320330"
-              className="hidden sm:inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-400 text-cream-100 px-5 py-2.5 rounded-sm font-body text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-lg hover:shadow-terracotta-700/30"
-            >
-              <Phone size={15} />
-              Call Now
-            </a>
-
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden text-cream-200 hover:text-gold-400 transition-colors p-2"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="md:hidden text-cream-200 hover:text-gold-400 transition-colors p-2"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
 
       {mobileOpen && (
         <div
           style={{
             position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 99999,
             backgroundColor: '#3B2F2F',
             display: 'flex',
             flexDirection: 'column',
@@ -168,6 +175,6 @@ export default function Navbar() {
           </button>
         </div>
       )}
-    </nav>
+    </>
   );
 }
